@@ -1,0 +1,6 @@
+{
+  "name": "NOVA OFFICE",
+  "description": "A comprehensive mobile office suite featuring Writer, Sheets, Slides, PDF, File Manager, and NARA AI novel editor assistant.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
