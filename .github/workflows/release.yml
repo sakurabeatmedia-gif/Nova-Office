@@ -7,15 +7,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-java@v5
         with:
           java-version: '17'
           distribution: 'temurin'
-      - run: chmod +x gradlew
+      - uses: gradle/actions/setup-gradle@v3
       - run: keytool -genkey -v -keystore release.keystore -alias mykey -keyalg RSA -keysize 2048 -validity 10000 -storepass 123456 -keypass 123456 -d "CN=Test, OU=Test, O=Test, L=Test, ST=Test, C=ID"
-      - run: ./gradlew assembleRelease -Pandroid.injected.signing.store.file=$PWD/release.keystore -Pandroid.injected.signing.store.password=123456 -Pandroid.injected.signing.key.alias=mykey -Pandroid.injected.signing.key.password=123456
-      - uses: actions/upload-artifact@v4
+      - run: gradle assembleRelease -Pandroid.injected.signing.store.file=$PWD/release.keystore -Pandroid.injected.signing.store.password=123456 -Pandroid.injected.signing.key.alias=mykey -Pandroid.injected.signing.key.password=123456
+      - uses: actions/upload-artifact@v5
         with:
           name: app-release
           path: app/build/outputs/apk/release/app-release.apk
